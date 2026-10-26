@@ -1,0 +1,96 @@
+{
+  "snapshot": "2026-10-26",
+  "label": "26 October 2026",
+  "status": "baseline",
+  "summary": "First recorded snapshot. Prices and rules below were read from each provider's and firm's own published documentation on the dates shown, and become the baseline that future snapshots are compared against.",
+  "fxNote": "Pound figures are converted to US dollars at the rate in use on the date the price was read. Treat any converted figure as approximate and check the provider's own page before relying on it.",
+
+  "passingServices": {
+    "checked": "2026-10-20",
+    "whatThisIs": "What managed prop firm evaluation passing services charge, at a $100,000 and a $200,000 account, read from each provider's own pricing page.",
+    "columns": ["Provider", "At $100k", "At $200k", "Fee model"],
+    "rows": [
+      {
+        "cells": ["ElitePropX", "$220", "$220", "Flat fee, any account size, retries covered while the evaluation runs"],
+        "source": "https://elitepropx.com/services/passing-prop-firm-services.html"
+      },
+      {
+        "cells": ["ThePropFirmPass", "£449 (~$565)", "Not published", "Rises with account size, from £349"],
+        "source": "https://thepropfirmpass.com/"
+      },
+      {
+        "cells": ["PassYourProp", "$588", "$1,158", "Size tiers"],
+        "source": "https://passyourprop.com/"
+      },
+      {
+        "cells": ["Pass Prop Challenges", "$400", "$700", "Size tiers, $100–$1,000"],
+        "source": "https://passpropchallenges.com/"
+      },
+      {
+        "cells": ["Funded Traders Passing", "Not published", "Not published", "Quote only"],
+        "source": ""
+      }
+    ]
+  },
+
+  "firms": {
+    "forex": {
+      "checked": "2026-10-21",
+      "label": "Forex and CFD firms",
+      "whatThisIs": "Evaluation rules only. Funded-account and payout conditions are separate documents at every firm listed here, and they are not covered in this snapshot.",
+      "columns": ["Firm and plan", "Phase 1 target", "Phase 2 target", "Daily loss", "Max loss", "Drawdown", "Min days", "Consistency", "Time limit"],
+      "rows": [
+        {
+          "cells": ["FTMO — 2-Step Challenge", "10%", "5%", "5%", "10%", "Static", "4", "None at evaluation", "None"],
+          "source": "https://ftmo.oanda.com/2-step-challenge/"
+        },
+        {
+          "cells": ["FundedNext — Stellar 2-Step (CFDs)", "8%", "5%", "5%", "10%", "Static", "5", "Confirm at checkout", "None"],
+          "source": "https://fundednext.com/cfds"
+        },
+        {
+          "cells": ["The5ers — High Stakes", "10%", "5%", "5%", "10%", "Static", "3 profitable days", "None stated", "None"],
+          "source": "https://the5ers.com/high-stakes/"
+        }
+      ]
+    },
+    "futures": {
+      "checked": "2026-10-21",
+      "label": "Futures firms",
+      "whatThisIs": "Futures rules are published in dollars rather than percentages, so the same figures are not comparable with the forex table until they are divided by the account size.",
+      "columns": ["Firm", "Target", "Max loss", "Drawdown", "Daily limit", "Consistency", "Account range"],
+      "rows": [
+        {
+          "cells": [
+            "Apex Trader Funding",
+            "Fixed dollar target per account size",
+            "Dollar threshold: $1,000 / $2,000 / $3,000 / $4,000 by size",
+            "End-of-day or intraday trailing, plan-dependent",
+            "Fixed on end-of-day plans ($500–$2,000 by size); via the trailing floor on intraday plans",
+            "50% best day at payout (30% on legacy accounts)",
+            "Up to $300,000"
+          ],
+          "source": "https://apextraderfunding.com/help-center/"
+        },
+        {
+          "cells": [
+            "Topstep",
+            "$3,000 / $6,000 / $9,000",
+            "$2,000 / $3,000 / $4,500",
+            "End-of-day trailing, locks at the starting balance",
+            "Optional at checkout: $1,000 / $2,000 / $3,000",
+            "55% best day versus target in the Combine; 40% only on the optional consistency payout path",
+            "$50,000–$150,000"
+          ],
+          "source": "https://help.topstep.com/"
+        }
+      ]
+    }
+  },
+
+  "notCovered": {
+    "title": "Firms deliberately left without figures in this snapshot",
+    "why": "These firms run several products under one brand, each with its own rulebook. Rather than publish a number that may belong to a different plan, no figure is shown until it has been read from that specific plan's documentation.",
+    "firms": ["FXIFY", "Alpha Capital Group", "FundingPips", "E8 Markets", "FX2 Funding"]
+  }
+}
