@@ -59,22 +59,32 @@ node serve.js      # http://localhost:8099
 ## Deployment
 
 The build outputs a self-contained static site to `docs/`, including `CNAME`
-holding `propfirmpassing.space`. To publish on GitHub Pages:
+holding `propfirmpassing.space`.
 
-1. Create a new repository for this site (it is deliberately separate from the
-   elitepropx.com repository, so its own build gates and history stay independent).
-2. Push the contents of `tracker/` to it.
-3. In the repository settings, set Pages to serve from the branch and the `/docs`
-   folder. The `CNAME` file handles the domain.
-4. At the DNS provider for `propfirmpassing.space`, point the domain at GitHub
-   Pages. Because this is an apex domain, that means four `A` records to
-   `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and `185.199.111.153`,
-   and a `CNAME` record for `www` pointing at `<username>.github.io`.
+**Live setup (done 26 October 2026):**
 
-Note that `propfirmpassing.space` currently has an `A` record pointing at
-`51.20.251.145`, an AWS instance that is not serving anything (ports 80 and 443 are
-both closed). That record has to be removed before the domain will resolve to
-GitHub Pages.
+- Repository: `Maxylinkss/propfirmpassing` — separate from the elitepropx.com
+  repository, so this site's build and history stay independent. This folder is the
+  git working tree and `origin` is already set.
+- Pages: serving from `main` / `/docs`. The `CNAME` file sets the domain.
+- DNS at Namecheap: four apex `A` records (`185.199.108.153`, `185.199.109.153`,
+  `185.199.110.153`, `185.199.111.153`) and `www` as a `CNAME` to
+  `maxylinkss.github.io`. The old `A` record pointing at `51.20.251.145` (a dark AWS
+  instance) was removed.
+
+To publish a new snapshot:
+
+```bash
+cd tracker
+node build.js
+git add -A
+git commit -m "Snapshot 2026-11-30"
+git push
+```
+
+GitHub Pages redeploys on push. HTTPS is issued by GitHub once its DNS check
+completes; until then the site is served over HTTP only and "Enforce HTTPS" in the
+repository's Pages settings reads as unavailable.
 
 ## Design rules this site follows
 
