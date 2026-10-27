@@ -87,13 +87,19 @@ GitHub Pages redeploys on push. DNS at Namecheap: four apex `A` records
 (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and
 `www` as a `CNAME` to `maxylinkss.github.io`.
 
-**HTTPS is not provisioned yet (as of 27 October 2026).** The domain resolves to
-GitHub Pages and serves over HTTP, but the certificate presented is the wildcard
-`*.github.io`, so every `https://` visit fails with a name mismatch while the
-canonical tag, sitemap and robots.txt all point at `https`. Fix it in the
-repository's **Settings → Pages**: re-save the custom domain, then enable
-**Enforce HTTPS** once GitHub finishes its DNS check and the option stops being
-greyed out. Submit the sitemap in Search Console only after HTTPS works.
+**HTTPS is provisioned and enforced (fixed 27 October 2026).** The site serves a
+Let's Encrypt certificate covering `propfirmpassing.space` and
+`www.propfirmpassing.space`, `http://` redirects to `https://`, and `www` redirects
+to the apex — which matches the `https` canonical, sitemap and robots.txt.
+
+If the certificate ever needs reissuing, note how it was fixed: GitHub had never
+started the ACME order, so re-saving the custom domain did nothing and the API
+answered `404 The certificate does not exist yet`. **Toggling** the domain did
+trigger it — set the custom domain to `www.propfirmpassing.space`, wait about
+twenty seconds, then set it back to `propfirmpassing.space`. The certificate state
+went to `approved` within thirty seconds, after which `https_enforced` could be set.
+Each of those changes makes GitHub commit an "Update CNAME" commit to this repo, so
+run `git pull --rebase` before the next push.
 
 ## History
 
