@@ -56,6 +56,30 @@
     {
       "q": "Does the price change at larger account sizes?",
       "a": "Not here. The fee is flat at any size from $10,000 to $300,000, because the work is the same work: the targets are the same percentages and the rules are the same rules. Several providers in the market charge by size tier, with prices rising at $200,000, and one does not publish a price at all. A flat fee is only meaningful if it is genuinely flat for the size you are actually buying, which is the second question to ask any provider."
+    },
+    {
+      "q": "What is the best prop firm passing service?",
+      "a": "There is no ranked answer in this category worth trusting, including one from us. What can be compared is measurable: whether the provider publishes a price at each account size, whether a failed attempt costs you a second full fee, whether they name the firms they decline to work with, whether a funded payout is promised anywhere, and whether they will trade a demo for you before you pay. A provider that fails any of those is not a candidate whatever its reviews say. Cheap and reliable are separate claims and often point in opposite directions here: the lowest published fee is frequently the one that charges you again after a failure, and reliability is measured by what happens when an evaluation fails, not by how a pass is advertised. Legit is not a label any provider can award itself — it is what the checks below are for. Price is the last item to compare, not the first."
+    },
+    {
+      "q": "Are prop firm passing service reviews trustworthy?",
+      "a": "Treat reviews in this category as advertising by default, because most are — including pages that read as independent comparisons. The sites ranking for this phrase are usually affiliate pages selling the service they appear to be assessing, which is why the recommended provider changes from one review to the next. What you can check independently: the provider's Trustpilot or equivalent profile, its review count and the dates on them, whether its own pages agree about the price, and whether anyone will trade a demo for you first. Our own position is stated in the disclosure at the bottom of this page."
+    },
+    {
+      "q": "Is a prop firm passing service legal?",
+      "a": "Hiring someone to trade your own evaluation account is not unlawful, and the reason this page does not lead with the word legal is that the real constraint is your firm's terms rather than the law. Where a firm prohibits third-party trading, a pass is a breach of its contract and the account can be closed at the payout review. So the accurate version is: lawful to buy, and sometimes fatal to the account you are trying to keep. The terms check is the only thing that separates those two cases."
+    },
+    {
+      "q": "What is a trailing drawdown, and why does it decide a pass?",
+      "a": "A trailing drawdown is a maximum loss limit that climbs as the account climbs, rather than staying fixed below the starting balance. On the strictest version the threshold trails unrealised profit, so a position showing a gain has already raised the floor and a retracement can end the account on a day that closes flat or positive. It is the most common reason a plan that works elsewhere fails: the same target and the same percentages are a different job under a trailing drawdown than under a static one."
+    },
+    {
+      "q": "Do you offer funded account management as well as passing?",
+      "a": "Funded account management is a different service with a different risk profile, because it put someone else's hands on an account that pays you, and more firms prohibit it than prohibit evaluation management. We do not sell it as a standard option, and the same terms check applies: if a funded account's terms prohibit third-party trading, a management arrangement ends the same way a prohibited pass does, at the payout review. What a pass leaves you with is your own account and your own decisions about it."
+    },
+    {
+      "q": "Can I pay to pass a prop firm challenge, or is that a scam?",
+      "a": "Both exist, which is why the phrase needs splitting. Paying a provider to trade your evaluation is a real service with a real deliverable. Paying a firm to defer its own fee is a payment plan, and paying anyone for a guaranteed pass is a contradiction, because the outcome depends on a rulebook the provider does not control and can change mid-evaluation. The test in every case is the same two questions: what do you receive, and what does it cost if it fails?"
     }
   ]
 }
