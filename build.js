@@ -203,6 +203,8 @@ ${schemaData ? `<script type="application/ld+json">\n${JSON.stringify(schemaData
       <a href="#cost">Prices</a>
       <a href="#firms">Firm terms</a>
       <a href="#rules">Rules</a>
+      <a href="#verify">Checks</a>
+      <a href="#proof">Evidence</a>
       <a href="#faq">FAQ</a>
       ${tgBtn('Telegram', 'btn btn-tg btn-sm')}
     </nav>
@@ -291,6 +293,8 @@ function build() {
     '{{PRICE_TABLE}}': table(snapshot.passingServices),
     '{{FOREX_RULES}}': table(snapshot.firms.forex),
     '{{FUTURES_RULES}}': table(snapshot.firms.futures),
+    '{{SNAPSHOT_LABEL}}': esc(snapshot.label),
+    '{{FAQ_COUNT}}': String(faq.items.length),
     '{{FAQ}}': faqBlock(faq),
     '{{TELEGRAM_URL}}': TELEGRAM.url,
     '{{TG_ICON}}': TG_ICON
