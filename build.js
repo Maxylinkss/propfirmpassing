@@ -40,6 +40,10 @@ const SITE = {
   description:
     'A prop firm passing service that trades your evaluation to target for a flat $220 at any account size, with a free 7-day demo test first. What it costs, which firms allow it, and what voids a pass.',
   lastReviewed: '2026-10-27',
+  // Search Console ownership. Both methods are emitted so verification cannot fail
+  // on a stale file: the HTML file must stay at the site root after verification,
+  // and the build wipes docs/ on every run, so it is written here rather than by hand.
+  googleSiteVerification: 'google21a9e6a0ea2d4d8a',
   telegram: TELEGRAM,
   serviceUrl: 'https://elitepropx.com/services/passing-prop-firm-services.html',
   email: 'support@elitepropx.com',
@@ -181,6 +185,7 @@ function layout({ title, desc, body, canonical, robots = 'index, follow', schema
 <meta property="og:site_name" content="${esc(SITE.name)}">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0f4a37">
+<meta name="google-site-verification" content="${esc(SITE.googleSiteVerification)}">
 <link rel="stylesheet" href="/assets/style.css">
 ${schemaData ? `<script type="application/ld+json">\n${JSON.stringify(schemaData, null, 2)}\n</script>\n` : ''}</head>
 <body>
@@ -315,6 +320,13 @@ function build() {
   fs.mkdirSync(path.join(OUT, 'assets'), { recursive: true });
   fs.copyFileSync(path.join(ROOT, 'assets', 'style.css'), path.join(OUT, 'assets', 'style.css'));
   written.push('assets/style.css');
+
+  written.push(
+    write(
+      SITE.googleSiteVerification + '.html',
+      'google-site-verification: ' + SITE.googleSiteVerification + '.html\n'
+    )
+  );
 
   fs.writeFileSync(path.join(OUT, 'CNAME'), SITE.domain + '\n');
   written.push('CNAME');
