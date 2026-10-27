@@ -1,0 +1,61 @@
+{
+  "heading": "Frequently asked questions about prop firm passing services",
+  "items": [
+    {
+      "q": "What is a prop firm passing service?",
+      "a": "It is a paid arrangement where someone other than you completes a prop firm evaluation. You buy the attempt rather than a strategy or signals. The deliverable is a challenge or verification phase that has reached its profit target while staying inside every rule the firm sets — daily loss, maximum loss, drawdown type, minimum trading days and any consistency cap on how much profit one day may contribute. The fee prices the work of passing a rulebook, which is why it does not scale with the account size."
+    },
+    {
+      "q": "How much does a prop firm passing service cost?",
+      "a": "In 2026, published prices at a $100,000 account run from $220 flat to $588 on tiered models, with one provider at roughly $565 in converted pounds and one that quotes per client without publishing anything. What matters more than the headline is the fee model: whether the price rises with account size, and whether a failed attempt costs you another full fee. A provider charging less per attempt but full price on retries is usually the more expensive service once the retry is priced in."
+    },
+    {
+      "q": "Is a prop firm passing service allowed?",
+      "a": "It depends entirely on your firm's terms, and the answer has to come from that firm's own document rather than from a comparison article or from the provider selling you the pass. Wording varies: some firms permit account management explicitly, some are silent and reserve the decision, and some prohibit any person other than the account holder from placing trades. Around one firm in five is a prohibition. Where the terms prohibit it, a pass is not worth the fee, because the account can be closed and the profit withheld at the payout stage."
+    },
+    {
+      "q": "Will you pass my prop firm challenge for me?",
+      "a": "Yes, for firms whose terms permit it, at any account size for a flat $220. The sequence is that your firm and exact plan name are read first, the third-party clause is quoted back to you, and the fee only comes up after that. Where the clause prohibits third-party trading, the work is declined rather than sold — a pass that gets voided when you request a payout costs you the fee, the evaluation and the trading time together."
+    },
+    {
+      "q": "How long does it take to pass a prop firm challenge through a service?",
+      "a": "The minimum trading days rule sets the floor, not the target. A target can be reached in three sessions, but an evaluation requiring ten days cannot be finished in three, so the honest timeline is always at least as long as that rule allows. Most 2-step evaluations with a four to five day minimum land inside one to two weeks of trading, and phases are usually run at different paces because phase two has a smaller target under the same drawdown rules."
+    },
+    {
+      "q": "Which prop firms do you pass challenges for?",
+      "a": "Around twenty firms are handled, covering forex and futures, including FTMO, FundedNext, The5ers, Apex Trader Funding and Topstep. The list is limited by terms rather than by convenience: a firm is only offered where its published rules permit the arrangement. If your firm is not on the list, the terms are still read and you get a yes or no — new firms are commonly added, and the answer is given before payment either way."
+    },
+    {
+      "q": "What happens if the evaluation fails while you are running it?",
+      "a": "The retry is ours. While an evaluation is being run under the flat fee, a breach of a rule before the target is reached is covered, and the next attempt is not a second charge to you. This is the term to get in writing before paying any provider, because it is the number that decides what the service actually costs: a cheaper fee with full-price retries has a higher expected cost than a higher fee with retries included."
+    },
+    {
+      "q": "Do I keep the funded account after the pass?",
+      "a": "The account is returned to you with the evaluation complete and documented, and the firm funds it under its own funded-account terms. You keep the account, the payouts and the decisions from that point. What the pass does not give you is the funded rulebook practised — the funded account has its own drawdown, target and usually a consistency condition before the first withdrawal, and nothing about how the evaluation was passed changes any of it."
+    },
+    {
+      "q": "Is a passing service the same as copy trading or signals?",
+      "a": "No, and the differences are not cosmetic. Signals tell you when to enter and do nothing about the drawdown rule that ends most challenges. Copy trading leaves you holding the account and owning every rule breach, and where a firm prohibits third-party trading, mirroring positions is usually the exact behaviour the clause was written to catch. A passing service takes the attempt on and carries the failure risk while the evaluation runs."
+    },
+    {
+      "q": "Is it cheaper to pass the challenge myself?",
+      "a": "It depends on how many attempts you would take. At a $500 firm fee and a 20% first-attempt pass rate, the expected cost of doing it yourself is five attempts, or about $2,500, plus roughly five months of calendar time. At a 40% rate it is about $1,250 across ten weeks. A flat $220 fee is under half the cost of a single attempt at a $100k size. If your own pass rate is high, the arithmetic moves decisively the other way and doing it yourself is cheaper."
+    },
+    {
+      "q": "Can you pass a futures evaluation like Apex or Topstep?",
+      "a": "Yes, where the firm's terms allow it, and futures evaluations are a different job rather than the same job on different instruments. Their rules are denominated in dollars rather than percentages, which means difficulty changes with the contract you trade: a $2,000 drawdown is 1,000 points at one micro Nasdaq contract and 40 points at one S&P mini. Several futures firms also trail the threshold on open profit, so letting a winner run can end the account even on a day that closes positive."
+    },
+    {
+      "q": "What do you need from me to start?",
+      "a": "Your firm, the exact plan name and the account size. The plan matters as much as the brand, because firms running several products publish rules per plan, and a clause that permits account management on one plan may not appear in another. Nothing is paid at this stage: the clause is read from the firm's own document, the relevant sentence comes back to you, and the fee only becomes relevant once the answer is yes."
+    },
+    {
+      "q": "Can a funded account be voided after being passed?",
+      "a": "Yes, and the point at which it happens is the payout request rather than the evaluation review. Firms usually fund the account regardless, because the evaluation review checks the numbers rather than who was operating the account. The prohibition surfaces later, when the payout review looks at whether the account holder traded it and the pattern does not match. That is the outcome the terms check exists to prevent, and it is why the check comes before the fee."
+    },
+    {
+      "q": "Does the price change at larger account sizes?",
+      "a": "Not here. The fee is flat at any size from $10,000 to $300,000, because the work is the same work: the targets are the same percentages and the rules are the same rules. Several providers in the market charge by size tier, with prices rising at $200,000, and one does not publish a price at all. A flat fee is only meaningful if it is genuinely flat for the size you are actually buying, which is the second question to ask any provider."
+    }
+  ]
+}

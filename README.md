@@ -1,113 +1,93 @@
-# Prop Firm Passing Tracker — `propfirmpassing.space`
+# propfirmpassing.space
 
-A dated tracker of what prop firm passing services charge and what firms require.
-The point is not the current figures — those exist in a dozen places. The point is
-that every figure here is stamped with the date it was read, and that the site keeps
-a memory of what changed between snapshots.
+One page about prop firm passing services, targeting the queries buyers actually
+type: *prop firm passing service*, *pass prop firm challenge for me*, *we pass your
+prop firm challenge*, *passing prop firm challenge*.
 
-The site is generated. Nothing in `docs/` is hand-written, so adding next month's
-numbers is one file.
+It is a single page on its own domain, built for a simple reason. The providers
+ranking for these terms are exact-match domains with one page each — `forexpas.com`,
+`quickproppass.com`, `propfundingpass.com` — and most of them hold those positions
+with a Domain Rating of 0. The thing that ranks is one focused page on a domain
+about passing challenges, not authority and not a large site with internal links.
+So this domain carries that page, and `elitepropx.com` stays the commercial site.
 
 ## Structure
 
 ```
 tracker/
+  content/index.html            the page body, with {{TOKENS}} for generated blocks
   data/
-    snapshot-2026-10-26.json     one file per snapshot, filename is the snapshot date
-  assets/style.css               stylesheet (copied into the build)
-  build.js                       renders docs/ from every snapshot in data/
-  serve.js                       local preview on http://localhost:8099
-  docs/                          GENERATED — do not edit by hand
+    snapshot-2026-10-26.json    dated price and rule figures used in the tables
+    faq.json                    questions and answers (rendered visibly AND as FAQPage schema)
+  assets/style.css              stylesheet, copied into the build
+  build.js                      renders docs/ — nothing in docs/ is hand-written
+  serve.js                      local preview on http://localhost:8099
+  docs/                         GENERATED — do not edit by hand
 ```
 
-## Adding a snapshot
+Tokens available in `content/index.html`: `{{PRICES_CHECKED}}`, `{{RULES_CHECKED}}`,
+`{{PRICE_TABLE}}`, `{{FOREX_RULES}}`, `{{FUTURES_RULES}}`, `{{FAQ}}`, `{{ORDER_URL}}`.
+The build warns if a token disappears from the content.
 
-1. Copy the most recent file in `data/` to `data/snapshot-<YYYY-MM-DD>.json`, using
-   the date you actually read the figures.
-2. Update the figures you re-checked. Update `checked` on each table to the date you
-   read it. Leave anything you did not re-check exactly as it was — a figure carried
-   forward keeps its old date and that is the correct behaviour.
-3. Set `status` to `"update"` and rewrite `summary`.
-4. Run the build:
+## Editing
+
+Prose lives in `content/index.html`. Tables and the figures inside them live in
+`data/snapshot-*.json` — edit the numbers there, not in the generated HTML. FAQ
+answers live in `data/faq.json`, which is one source for both the visible accordion
+and the `FAQPage` schema, so the two can never drift apart.
 
 ```bash
 cd tracker
-node build.js
+node build.js        # prints word count, snapshot dates and FAQ count
+node serve.js        # http://localhost:8099
 ```
 
-The build diffs the newest snapshot against the previous one and generates the
-change log automatically. It reports how many changes it found:
+The build prints the visible word count every time. It should stay north of 5,000;
+the page is competing with a 5,758-word page that ranks first.
 
-```
-Built 9 files into docs/
-Snapshots: 2 (latest 2026-11-30)
-Changes detected since previous snapshot: 4
-```
+## Design rules this site follows
 
-If that count looks wrong, the cause is almost always a row's **first cell** having
-been edited. Rows are matched across snapshots by their first cell, so renaming
-`FTMO — 2-Step Challenge` breaks the match and the row reads as removed-then-added.
-Edit figures in place; don't rename providers or firms.
-
-## Previewing locally
-
-```bash
-cd tracker
-node serve.js      # http://localhost:8099
-```
+- **One converting link.** Every call to action points at the ElitePropX contact
+  page, and the disclosure in the footer says who maintains the site. There is no
+  keyword-anchor link repeated sitewide, in either direction.
+- **Every figure is dated and sourced.** Prices carry the date they were read and
+  link to the provider's own pricing page. A figure that could not be tied to a
+  specific account size is published as "not published" rather than estimated.
+- **Nothing promises a funded payout.** The funded phase has its own rules that the
+  evaluation does not test. Saying otherwise would be both untrue and the fastest
+  way to lose a buyer who checks.
+- **The terms check comes before the fee.** Where a firm's rules prohibit
+  third-party trading, the page says so and the work is declined. This is also the
+  single best differentiator against providers who take payment first.
 
 ## Deployment
 
-The build outputs a self-contained static site to `docs/`, including `CNAME`
+Site is served from `main` / `/docs` on `Maxylinkss/propfirmpassing`, with `CNAME`
 holding `propfirmpassing.space`.
-
-**Live setup (done 26 October 2026):**
-
-- Repository: `Maxylinkss/propfirmpassing` — separate from the elitepropx.com
-  repository, so this site's build and history stay independent. This folder is the
-  git working tree and `origin` is already set.
-- Pages: serving from `main` / `/docs`. The `CNAME` file sets the domain.
-- DNS at Namecheap: four apex `A` records (`185.199.108.153`, `185.199.109.153`,
-  `185.199.110.153`, `185.199.111.153`) and `www` as a `CNAME` to
-  `maxylinkss.github.io`. The old `A` record pointing at `51.20.251.145` (a dark AWS
-  instance) was removed.
-
-To publish a new snapshot:
 
 ```bash
 cd tracker
 node build.js
 git add -A
-git commit -m "Snapshot 2026-11-30"
+git commit -m "Rewrite as a single passing-service page"
 git push
 ```
 
-GitHub Pages redeploys on push. HTTPS is issued by GitHub once its DNS check
-completes; until then the site is served over HTTP only and "Enforce HTTPS" in the
-repository's Pages settings reads as unavailable.
+GitHub Pages redeploys on push. DNS at Namecheap: four apex `A` records
+(`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and
+`www` as a `CNAME` to `maxylinkss.github.io`.
 
-## Design rules this site follows
+**HTTPS is not provisioned yet (as of 27 October 2026).** The domain resolves to
+GitHub Pages and serves over HTTP, but the certificate presented is the wildcard
+`*.github.io`, so every `https://` visit fails with a name mismatch while the
+canonical tag, sitemap and robots.txt all point at `https`. Fix it in the
+repository's **Settings → Pages**: re-save the custom domain, then enable
+**Enforce HTTPS** once GitHub finishes its DNS check and the option stops being
+greyed out. Submit the sitemap in Search Console only after HTTPS works.
 
-These are deliberate and worth keeping if you extend it:
+## History
 
-- **One outbound link, in context.** There are exactly two links to `elitepropx.com`
-  on the whole site: the source citation on that provider's row in the price table
-  (every row has a source link, so this is consistency, not promotion) and one
-  contextual link in the "Who maintains this" section on the methodology page.
-  There is no sitewide footer link and no keyword anchor repeated across pages. A
-  tracker whose every page links out with an exact-match anchor reads as a link
-  scheme, and the risk lands on `elitepropx.com`, not on this domain.
-- **Disclosure in the footer of every page.** The tracker is maintained by one of
-  the providers it lists. That is stated plainly rather than left to be discovered.
-- **No estimated figures.** If a figure could not be read from a primary source, or
-  could not be tied to a specific plan, it is not published. A number attributed to
-  the wrong product is worse than no number.
-- **Corrections become new snapshots** rather than silent edits, so the history
-  stays honest.
-
-## What this site deliberately does not do
-
-It does not republish content from `elitepropx.com`. The two sites are meant to be
-separate things: `elitepropx.com` is a commercial service site with editorial
-guides, this is a reference record. Duplicating pages across the two would put them
-in competition for the same keywords and split their authority.
+The domain previously held a four-page dated tracker of passing-service prices and
+firm rules. It was replaced on 27 October 2026 by this single page. The tracker is
+recoverable from git: `git show 1d3d70d` for the version, and the snapshot data it
+used is still in `data/`, feeding the price and rule tables on this page.
