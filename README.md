@@ -47,9 +47,19 @@ the page is competing with a 5,758-word page that ranks first.
 
 ## Design rules this site follows
 
-- **One converting link.** Every call to action points at the ElitePropX contact
-  page, and the disclosure in the footer says who maintains the site. There is no
-  keyword-anchor link repeated sitewide, in either direction.
+- **Telegram is the only call to action.** Every button on the page opens
+  `https://t.me/voraspas`, the same account `elitepropx.com` uses, and that URL is
+  defined once in `build.js` as `TELEGRAM.url`. There is no keyword-anchor link
+  repeated sitewide, in either direction, and the footer disclosure says who
+  maintains the site.
+- **The free 7-day demo test is offered before the fee.** Open a broker demo, send
+  the demo login only, we trade it for seven days under a written plan the client
+  receives first. It is the cheapest due-diligence step on the page and it belongs
+  above the price table.
+- **No JavaScript, no web fonts, no image files.** Every illustration is inline SVG,
+  so the page renders in one request after the HTML and never shifts while loading.
+  Keep it that way: a heavier design costs more than it returns on a page whose
+  whole job is one conversion.
 - **Every figure is dated and sourced.** Prices carry the date they were read and
   link to the provider's own pricing page. A figure that could not be tied to a
   specific account size is published as "not published" rather than estimated.
