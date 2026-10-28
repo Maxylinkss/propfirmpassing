@@ -52,12 +52,12 @@ const SITE = {
 // Old addresses, all retired when the tracker collapsed into one page. The host is
 // Netlify, so these are real 301s from a _redirects file rather than the meta-refresh
 // stubs GitHub Pages forced. Anything not listed here falls through to 404.html.
-const REDIRECTS = [
-  'prices.html',
-  'rules.html',
-  'methodology.html',
-  'blog/how-much-does-prop-firm-passing-cost.html'
-];
+//
+// The /blog/ entry is a splat: that section existed on an earlier build of the site and
+// is gone, and Bing still lists one of its posts. Matching the whole prefix means an old
+// post address that no list here remembers still lands on the page that replaced it
+// instead of a 404.
+const REDIRECTS = ['prices.html', 'rules.html', 'methodology.html', 'blog/*'];
 
 // ---------------------------------------------------------------- data loading
 

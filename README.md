@@ -69,9 +69,10 @@ the page is competing with a 5,758-word page that ranks first.
   formatting change.
 - **Retired URLs redirect with a real 301, they don't 404.** `build.js` writes
   `docs/_redirects` from the `REDIRECTS` array, covering the addresses the
-  four-page tracker used (`prices.html`, `rules.html`, `methodology.html`) plus one
-  legacy `/blog/` address Bing still listed. Add any future retired URL to that
-  array rather than leaving it to `404.html`. This is the reason the site moved off
+  four-page tracker used (`prices.html`, `rules.html`, `methodology.html`) plus
+  `blog/*`, which retires that whole section — it covers the one post Bing still
+  lists and any other old post address a link might still point at. Add any future
+  retired URL to that array rather than leaving it to `404.html`. This is the reason the site moved off
   GitHub Pages: a static HTML host cannot send a 301 status code, and a meta
   refresh is only a stand-in for one.
 - **The free 7-day demo test is offered before the fee.** Open a broker demo, send
