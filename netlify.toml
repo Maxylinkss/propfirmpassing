@@ -6,8 +6,10 @@
   publish = "docs"
 
 # The internal /index.html form is not the canonical URL; send it to / with the
-# same 301 the retired tracker pages get.
+# same 301 the retired tracker pages get. force = true is required because
+# index.html exists as a file, and a plain rule would lose to it.
 [[redirects]]
   from = "/index.html"
   to = "/"
   status = 301
+  force = true
