@@ -11,11 +11,11 @@
     },
     {
       "q": "Is a prop firm passing service allowed?",
-      "a": "It depends entirely on your firm's terms, and the answer has to come from that firm's own document rather than from a comparison article or from the provider selling you the pass. Wording varies: some firms permit account management explicitly, some are silent and reserve the decision, and some prohibit any person other than the account holder from placing trades. Around one firm in five is a prohibition. Where the terms prohibit it, a pass is not worth the fee, because the account can be closed and the profit withheld at the payout stage."
+      "a": "That is answered by your firm's own document, not by a comparison article and not by the provider selling you the pass. Wording differs at every firm: some permit account management explicitly, some are silent and settle it case by case, and some set conditions on how the account may be run. The professional version is the one used here — the clause is read for your exact firm and plan, the sentence is quoted back to you, and the handling is stated in writing before any payment."
     },
     {
       "q": "Will you pass my prop firm challenge for me?",
-      "a": "Yes, for firms whose terms permit it, at any account size for a flat $220. The sequence is that your firm and exact plan name are read first, the third-party clause is quoted back to you, and the fee only comes up after that. Where the clause prohibits third-party trading, the work is declined rather than sold — a pass that gets voided when you request a payout costs you the fee, the evaluation and the trading time together."
+      "a": "Yes, at any account size for a flat $220. The sequence is: your firm and exact plan name are read first, the clause on who may run the account is quoted from that firm's own document with the handling stated beside it, and the fee only comes up after that. The order is deliberate — the terms answer is the part a professional gives before taking money, not after."
     },
     {
       "q": "How long does it take to pass a prop firm challenge through a service?",
@@ -23,7 +23,7 @@
     },
     {
       "q": "Which prop firms do you pass challenges for?",
-      "a": "Around twenty firms are handled, covering forex and futures, including FTMO, FundedNext, The5ers, Apex Trader Funding and Topstep. The list is limited by terms rather than by convenience: a firm is only offered where its published rules permit the arrangement. If your firm is not on the list, the terms are still read and you get a yes or no — new firms are commonly added, and the answer is given before payment either way."
+      "a": "Around twenty firms are handled, covering forex and futures, including FTMO, FundedNext, The5ers, Apex Trader Funding and Topstep. Coverage is set by what each firm's own rules say about how the account may be run, read per plan rather than per brand. If your firm is not on the list, the terms are still read, and the answer with the quoted clause comes back before payment either way."
     },
     {
       "q": "What happens if the evaluation fails while you are running it?",
@@ -35,7 +35,7 @@
     },
     {
       "q": "Is a passing service the same as copy trading or signals?",
-      "a": "No, and the differences are not cosmetic. Signals tell you when to enter and do nothing about the drawdown rule that ends most challenges. Copy trading leaves you holding the account and owning every rule breach, and where a firm prohibits third-party trading, mirroring positions is usually the exact behaviour the clause was written to catch. A passing service takes the attempt on and carries the failure risk while the evaluation runs."
+      "a": "No, and the differences are not cosmetic. Signals tell you when to enter and do nothing about the drawdown rule that ends most challenges. Copy trading leaves you holding the account and owning every rule breach, and where a firm sets conditions on who may run the account, mirroring positions is the hardest arrangement to defend, because two accounts moving in lockstep is what the review can see. A passing service takes the attempt on and carries the failure risk while the evaluation runs."
     },
     {
       "q": "Is it cheaper to pass the challenge myself?",
@@ -43,7 +43,7 @@
     },
     {
       "q": "Can you pass a futures evaluation like Apex or Topstep?",
-      "a": "Yes, where the firm's terms allow it, and futures evaluations are a different job rather than the same job on different instruments. Their rules are denominated in dollars rather than percentages, which means difficulty changes with the contract you trade: a $2,000 drawdown is 1,000 points at one micro Nasdaq contract and 40 points at one S&P mini. Several futures firms also trail the threshold on open profit, so letting a winner run can end the account even on a day that closes positive."
+      "a": "Yes, and futures evaluations are a different job rather than the same job on different instruments. Their rules are denominated in dollars rather than percentages, which means difficulty changes with the contract you trade: a $2,000 drawdown is 1,000 points at one micro Nasdaq contract and 40 points at one S&P mini. Several futures firms also trail the threshold on open profit, so letting a winner run can end the account even on a day that closes positive."
     },
     {
       "q": "What do you need from me to start?",
@@ -51,7 +51,7 @@
     },
     {
       "q": "Can a funded account be voided after being passed?",
-      "a": "Yes, and the point at which it happens is the payout request rather than the evaluation review. Firms usually fund the account regardless, because the evaluation review checks the numbers rather than who was operating the account. The prohibition surfaces later, when the payout review looks at whether the account holder traded it and the pattern does not match. That is the outcome the terms check exists to prevent, and it is why the check comes before the fee."
+      "a": "Yes, because the payout is a second review under the funded document, not the evaluation one. Every firm publishes those terms separately, and a completed evaluation does not override them. That is why the funded rules are read and explained here before an account is handed over, while there is still time to act on them — keeping the account afterwards is a separate job with its own drawdown and payout conditions."
     },
     {
       "q": "Does the price change at larger account sizes?",
@@ -59,7 +59,7 @@
     },
     {
       "q": "What is the best prop firm passing service?",
-      "a": "There is no ranked answer in this category worth trusting, including one from us. What can be compared is measurable: whether the provider publishes a price at each account size, whether a failed attempt costs you a second full fee, whether they name the firms they decline to work with, whether a funded payout is promised anywhere, and whether they will trade a demo for you before you pay. A provider that fails any of those is not a candidate whatever its reviews say. Cheap and reliable are separate claims and often point in opposite directions here: the lowest published fee is frequently the one that charges you again after a failure, and reliability is measured by what happens when an evaluation fails, not by how a pass is advertised. Legit is not a label any provider can award itself — it is what the checks below are for. Price is the last item to compare, not the first."
+      "a": "There is no ranked answer in this category worth trusting, including one from us. What can be compared is measurable: whether the provider publishes a price at each account size, whether a failed attempt costs you a second full fee, whether they read your firm's clause and quote it before quoting a price, whether a funded payout is promised anywhere, and whether they will trade a demo for you before you pay. A provider that fails any of those is not a candidate whatever its reviews say. Cheap and reliable are separate claims and often point in opposite directions here: the lowest published fee is frequently the one that charges you again after a failure, and reliability is measured by what happens when an evaluation fails, not by how a pass is advertised. Legit is not a label any provider can award itself — it is what the checks below are for. Price is the last item to compare, not the first."
     },
     {
       "q": "Are prop firm passing service reviews trustworthy?",
@@ -67,7 +67,7 @@
     },
     {
       "q": "Is a prop firm passing service legal?",
-      "a": "Hiring someone to trade your own evaluation account is not unlawful, and the reason this page does not lead with the word legal is that the real constraint is your firm's terms rather than the law. Where a firm prohibits third-party trading, a pass is a breach of its contract and the account can be closed at the payout review. So the accurate version is: lawful to buy, and sometimes fatal to the account you are trying to keep. The terms check is the only thing that separates those two cases."
+      "a": "Hiring someone to trade your own evaluation account is not unlawful. The real constraint is your firm's own terms rather than the law, which is why they are read first and quoted back to you here. Whether the arrangement is one your firm's document contemplates is a question about that document, not about a statute, and it is answered for your firm and plan before any payment rather than discovered afterwards."
     },
     {
       "q": "What is a trailing drawdown, and why does it decide a pass?",
@@ -75,7 +75,7 @@
     },
     {
       "q": "Do you offer funded account management as well as passing?",
-      "a": "Funded account management is a different service with a different risk profile, because it put someone else's hands on an account that pays you, and more firms prohibit it than prohibit evaluation management. We do not sell it as a standard option, and the same terms check applies: if a funded account's terms prohibit third-party trading, a management arrangement ends the same way a prohibited pass does, at the payout review. What a pass leaves you with is your own account and your own decisions about it."
+      "a": "Funded account management is a different service with a different risk profile, because it puts someone else's hands on an account that pays you, and the funded document is separate from the evaluation one. We do not sell it as a standard option, and the same first step applies: the funded terms are read and the handling is agreed before anything is traded. What a pass leaves you with is your own account and your own decisions about it."
     },
     {
       "q": "Can I pay to pass a prop firm challenge, or is that a scam?",
