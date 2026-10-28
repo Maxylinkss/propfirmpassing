@@ -348,12 +348,6 @@ function build() {
     )
   );
 
-  // Temporary: keeps GitHub Pages answering the custom domain until the DNS
-  // cutover to Netlify is confirmed. Netlify ignores this file. Remove this block
-  // (and the file) once propfirmpassing.space resolves to Netlify.
-  fs.writeFileSync(path.join(OUT, 'CNAME'), SITE.domain + '\n');
-  written.push('CNAME');
-
   fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
   written.push('robots.txt');
 

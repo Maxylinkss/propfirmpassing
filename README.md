@@ -97,8 +97,8 @@ the page is competing with a 5,758-word page that ranks first.
 
 **Netlify** serves this site from `main` on `Maxylinkss/propfirmpassing`, using
 `netlify.toml` at the repo root: build command `node build.js`, publish directory
-`docs`. GitHub Pages is the former host and stays configured only until the DNS
-cutover is confirmed.
+`docs`. GitHub Pages is the former host, and it answered the domain until the
+cutover on 28 October 2026.
 
 ```bash
 cd tracker
@@ -108,26 +108,25 @@ git commit -m "..."
 git push           # Netlify builds and publishes from main
 ```
 
-DNS at Namecheap, once the Netlify site exists and has issued its certificate:
+DNS at Namecheap, as set at the cutover:
 
 | Record | Host | Value |
 |---|---|---|
 | `A` | `@` | `75.2.60.5` (Netlify's load balancer — confirm in the Netlify UI, it changes) |
-| `CNAME` | `www` | `<site-name>.netlify.app` |
+| `CNAME` | `www` | `propfirmpassing.netlify.app` |
 
-The four `185.199.x.x` GitHub Pages `A` records are removed at the same time; that
-is the cutover, and the site is unreachable at the domain for as long as DNS takes
-to propagate. Check the certificate is active in Netlify **before** changing DNS,
-or the apex will serve an error until it provisions.
+The four `185.199.x.x` GitHub Pages `A` records were removed in the same edit, and
+the Namecheap `Email Forwarding` `MX`/`SPF` records were left untouched, so mail
+keeps working. Apex `TTL` is Namecheap's automatic 30 minutes, which is how long
+resolvers that had cached the GitHub addresses keep reaching a host that no longer
+answers for the domain.
 
-`docs/CNAME` is still emitted by the build so GitHub Pages keeps answering until
-the cutover. Delete that line from `build.js` afterwards — Netlify ignores the
-file, but it is confusing to leave a GitHub Pages custom-domain marker in the
-publish directory.
+`docs/CNAME` is no longer emitted: it was only ever a GitHub Pages custom-domain
+marker, and the file is gone from the build once the cutover was confirmed.
 
-**Rolling back** means restoring the four GitHub `A` records and re-enabling Pages
-on `main` / `docs`. The `CNAME` file is still in the output, so Pages picks the
-domain back up without further work.
+**Rolling back** means restoring the four GitHub `A` records, pointing `www` back
+at `maxylinkss.github.io`, and re-adding the custom domain in the repository's
+Pages settings — the `CNAME` file is no longer in `docs/` to do that automatically.
 
 ### The old GitHub Pages setup, for reference
 
