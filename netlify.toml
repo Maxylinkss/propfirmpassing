@@ -1,0 +1,13 @@
+# propfirmpassing.space is served by Netlify, from this repo's docs/ directory.
+# The build has no dependencies, so there is nothing to install.
+
+[build]
+  command = "node build.js"
+  publish = "docs"
+
+# The internal /index.html form is not the canonical URL; send it to / with the
+# same 301 the retired tracker pages get.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301

@@ -45,11 +45,19 @@ const SITE = {
   // and the build wipes docs/ on every run, so it is written here rather than by hand.
   googleSiteVerification: 'google21a9e6a0ea2d4d8a',
   telegram: TELEGRAM,
-  serviceUrl: 'https://elitepropx.com/services/passing-prop-firm-services.html',
-  email: 'support@elitepropx.com',
   disclosure:
-    'This site is maintained by ElitePropX, the provider the service described here belongs to. Prices for other providers in the table come from their own pricing pages, read on the dates shown, and the row for ElitePropX is our own price rather than an independent one.'
+    'This site is operated by the provider of the flat $220 service described here, so that provider\'s row in the price table is our own price rather than an independent figure. Prices for every other provider come from their own pricing pages, read on the dates shown.'
 };
+
+// Old addresses, all retired when the tracker collapsed into one page. The host is
+// Netlify, so these are real 301s from a _redirects file rather than the meta-refresh
+// stubs GitHub Pages forced. Anything not listed here falls through to 404.html.
+const REDIRECTS = [
+  'prices.html',
+  'rules.html',
+  'methodology.html',
+  'blog/how-much-does-prop-firm-passing-cost.html'
+];
 
 // ---------------------------------------------------------------- data loading
 
@@ -117,9 +125,9 @@ function schema(snapshot, faq) {
     '@graph': [
       {
         '@type': 'Organization',
-        '@id': 'https://elitepropx.com/#organization',
-        name: 'ElitePropX',
-        url: 'https://elitepropx.com/',
+        '@id': SITE.url + '/#organization',
+        name: SITE.name,
+        url: SITE.url + '/',
         sameAs: [TELEGRAM.url],
         description: 'Managed prop firm evaluation passing service.'
       },
@@ -131,7 +139,7 @@ function schema(snapshot, faq) {
         description: SITE.description,
         inLanguage: 'en',
         dateModified: SITE.lastReviewed,
-        publisher: { '@id': 'https://elitepropx.com/#organization' }
+        publisher: { '@id': SITE.url + '/#organization' }
       },
       {
         '@type': 'Service',
@@ -142,7 +150,7 @@ function schema(snapshot, faq) {
           "Completion of a prop firm evaluation to its profit target under the firm's own rules, for a flat fee at any account size, subject to the firm's terms permitting third-party account management. A free seven-day demo test is available before purchase.",
         url: SITE.url + '/',
         areaServed: 'Worldwide',
-        provider: { '@id': 'https://elitepropx.com/#organization' },
+        provider: { '@id': SITE.url + '/#organization' },
         offers: {
           '@type': 'Offer',
           price: '220',
@@ -222,16 +230,12 @@ ${body}
     <div>
       <p class="foot-h">Start</p>
       ${tgBtn('Message ' + TELEGRAM.handle)}
-      <p class="foot-alt"><a href="${esc(SITE.serviceUrl)}" rel="noopener">Email</a> · <a href="mailto:${esc(
-        SITE.email
-      )}">${esc(SITE.email)}</a></p>
+      <p class="foot-alt">Telegram is the only contact channel for this site. There is no email address, form or phone number here.</p>
     </div>
   </div>
   <div class="wrap">
     <p class="meta">Figures in the tables were read from each provider's own pricing page or each firm's own documentation on the dates shown, and they change without notice — confirm against the source before acting on them. Nothing here is financial advice, and nothing here is a promise about a funded payout, which is governed by rules the evaluation does not test.</p>
-    <p class="meta">Page last reviewed ${esc(SITE.lastReviewed)} · <a href="${esc(
-    SITE.serviceUrl
-  )}" rel="noopener">How the seven-day demo and the pass work in detail</a></p>
+    <p class="meta">Page last reviewed ${esc(SITE.lastReviewed)} · <a href="#demo">How the seven-day demo and the pass work</a></p>
   </div>
 </footer>
 <a class="tg-float" href="${TELEGRAM.url}" target="_blank" rel="noopener" aria-label="Message us on Telegram ${esc(
@@ -321,6 +325,18 @@ function build() {
   written.push(write('index.html', html));
   written.push(write('404.html', page404()));
 
+  // Netlify reads _redirects from the publish directory, and the build wipes that
+  // directory, so the file is generated here rather than committed. A 301 is the
+  // only redirect type that tells Google the old URL is permanently gone.
+  written.push(
+    write(
+      '_redirects',
+      '# Retired addresses, redirected to the single page with a real 301.\n' +
+        REDIRECTS.map((from) => `/${from}  /  301`).join('\n') +
+        '\n'
+    )
+  );
+
   fs.mkdirSync(path.join(OUT, 'assets'), { recursive: true });
   fs.copyFileSync(path.join(ROOT, 'assets', 'style.css'), path.join(OUT, 'assets', 'style.css'));
   written.push('assets/style.css');
@@ -332,6 +348,9 @@ function build() {
     )
   );
 
+  // Temporary: keeps GitHub Pages answering the custom domain until the DNS
+  // cutover to Netlify is confirmed. Netlify ignores this file. Remove this block
+  // (and the file) once propfirmpassing.space resolves to Netlify.
   fs.writeFileSync(path.join(OUT, 'CNAME'), SITE.domain + '\n');
   written.push('CNAME');
 

@@ -11,8 +11,7 @@
     "columns": ["Provider", "At $100k", "At $200k", "Fee model"],
     "rows": [
       {
-        "cells": ["ElitePropX", "$220", "$220", "Flat fee, any account size, retries covered while the evaluation runs"],
-        "source": "https://elitepropx.com/services/passing-prop-firm-services.html"
+        "cells": ["Prop Firm Passing (this site)", "$220", "$220", "Flat fee, any account size, retries covered while the evaluation runs"]
       },
       {
         "cells": ["ThePropFirmPass", "£449 (~$565)", "Not published", "Rises with account size, from £349"],

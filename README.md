@@ -9,7 +9,13 @@ ranking for these terms are exact-match domains with one page each — `forexpas
 `quickproppass.com`, `propfundingpass.com` — and most of them hold those positions
 with a Domain Rating of 0. The thing that ranks is one focused page on a domain
 about passing challenges, not authority and not a large site with internal links.
-So this domain carries that page, and `elitepropx.com` stays the commercial site.
+So this domain carries that page.
+
+It is run as a separate site from `elitepropx.com`, deliberately: separate brand,
+separate schema, no links in either direction, no shared contact channel published
+on the page. The service sold is the same, which is disclosed in the footer — the
+separation is about how the two properties are presented, not about hiding that
+the same provider stands behind both.
 
 ## Structure
 
@@ -48,10 +54,26 @@ the page is competing with a 5,758-word page that ranks first.
 ## Design rules this site follows
 
 - **Telegram is the only call to action.** Every button on the page opens
-  `https://t.me/voraspas`, the same account `elitepropx.com` uses, and that URL is
-  defined once in `build.js` as `TELEGRAM.url`. There is no keyword-anchor link
-  repeated sitewide, in either direction, and the footer disclosure says who
-  maintains the site.
+  `https://t.me/voraspas`, and that URL is defined once in `build.js` as
+  `TELEGRAM.url`. There is no other contact channel: no email address, form or
+  phone number is published here.
+- **This domain and `elitepropx.com` are kept separate.** Nothing here links to
+  that domain and nothing on it links here — not in the footer, not in body copy,
+  not in the `Organization` schema, which names `Prop Firm Passing` and
+  `propfirmpassing.space` rather than the other site. The disclosure in the footer
+  says the site is operated by the provider of the $220 service without naming the
+  other brand, which states the conflict without merging the two properties. The
+  price-table row for that service is therefore labelled "Prop Firm Passing (this
+  site)" and carries no source link. Don't reintroduce a cross-link as a
+  convenience; if the two ever need to be joined, that is a decision, not a
+  formatting change.
+- **Retired URLs redirect with a real 301, they don't 404.** `build.js` writes
+  `docs/_redirects` from the `REDIRECTS` array, covering the addresses the
+  four-page tracker used (`prices.html`, `rules.html`, `methodology.html`) plus one
+  legacy `/blog/` address Bing still listed. Add any future retired URL to that
+  array rather than leaving it to `404.html`. This is the reason the site moved off
+  GitHub Pages: a static HTML host cannot send a 301 status code, and a meta
+  refresh is only a stand-in for one.
 - **The free 7-day demo test is offered before the fee.** Open a broker demo, send
   the demo login only, we trade it for seven days under a written plan the client
   receives first. It is the cheapest due-diligence step on the page and it belongs
@@ -72,34 +94,52 @@ the page is competing with a 5,758-word page that ranks first.
 
 ## Deployment
 
-Site is served from `main` / `/docs` on `Maxylinkss/propfirmpassing`, with `CNAME`
-holding `propfirmpassing.space`.
+**Netlify** serves this site from `main` on `Maxylinkss/propfirmpassing`, using
+`netlify.toml` at the repo root: build command `node build.js`, publish directory
+`docs`. GitHub Pages is the former host and stays configured only until the DNS
+cutover is confirmed.
 
 ```bash
 cd tracker
-node build.js
+node build.js      # regenerates docs/, including _redirects
 git add -A
-git commit -m "Rewrite as a single passing-service page"
-git push
+git commit -m "..."
+git push           # Netlify builds and publishes from main
 ```
 
-GitHub Pages redeploys on push. DNS at Namecheap: four apex `A` records
-(`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and
-`www` as a `CNAME` to `maxylinkss.github.io`.
+DNS at Namecheap, once the Netlify site exists and has issued its certificate:
 
-**HTTPS is provisioned and enforced (fixed 27 October 2026).** The site serves a
-Let's Encrypt certificate covering `propfirmpassing.space` and
-`www.propfirmpassing.space`, `http://` redirects to `https://`, and `www` redirects
-to the apex — which matches the `https` canonical, sitemap and robots.txt.
+| Record | Host | Value |
+|---|---|---|
+| `A` | `@` | `75.2.60.5` (Netlify's load balancer — confirm in the Netlify UI, it changes) |
+| `CNAME` | `www` | `<site-name>.netlify.app` |
 
-If the certificate ever needs reissuing, note how it was fixed: GitHub had never
-started the ACME order, so re-saving the custom domain did nothing and the API
-answered `404 The certificate does not exist yet`. **Toggling** the domain did
-trigger it — set the custom domain to `www.propfirmpassing.space`, wait about
-twenty seconds, then set it back to `propfirmpassing.space`. The certificate state
-went to `approved` within thirty seconds, after which `https_enforced` could be set.
-Each of those changes makes GitHub commit an "Update CNAME" commit to this repo, so
-run `git pull --rebase` before the next push.
+The four `185.199.x.x` GitHub Pages `A` records are removed at the same time; that
+is the cutover, and the site is unreachable at the domain for as long as DNS takes
+to propagate. Check the certificate is active in Netlify **before** changing DNS,
+or the apex will serve an error until it provisions.
+
+`docs/CNAME` is still emitted by the build so GitHub Pages keeps answering until
+the cutover. Delete that line from `build.js` afterwards — Netlify ignores the
+file, but it is confusing to leave a GitHub Pages custom-domain marker in the
+publish directory.
+
+**Rolling back** means restoring the four GitHub `A` records and re-enabling Pages
+on `main` / `docs`. The `CNAME` file is still in the output, so Pages picks the
+domain back up without further work.
+
+### The old GitHub Pages setup, for reference
+
+The site used to be served from `main` / `/docs` on GitHub Pages, with `CNAME`
+holding `propfirmpassing.space` and four apex `A` records
+(`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) plus
+`www` as a `CNAME` to `maxylinkss.github.io`. HTTPS was provisioned and enforced on
+27 October 2026. If that host is ever restored and the certificate needs reissuing:
+GitHub had never started the ACME order, so re-saving the custom domain did nothing
+and the API answered `404 The certificate does not exist yet`. **Toggling** the
+domain did trigger it — set the custom domain to `www.propfirmpassing.space`, wait
+about twenty seconds, set it back to `propfirmpassing.space`, and the state went to
+`approved` within thirty seconds.
 
 ## History
 
