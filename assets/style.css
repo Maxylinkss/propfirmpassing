@@ -118,6 +118,7 @@ strong { font-weight: 660; }
   font-weight: 500;
 }
 .site-nav > a:not(.btn):hover { color: var(--ink); }
+.site-nav > a.nav-order { color: var(--accent); font-weight: 660; }
 
 /* ------------------------------------------------------------------- buttons */
 
@@ -152,9 +153,71 @@ strong { font-weight: 660; }
 
 /* ----------------------------------------------------- intro (no hero block) */
 
-.intro { padding: 56px 0 34px; }
+.intro { padding: 56px 0 26px; }
 .intro h1 { max-width: 32ch; }
 .intro .lede { margin-top: 4px; }
+
+/* ------------------------------------------------------------------- order */
+
+.order-band { padding: 0 0 42px; }
+.order-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 34px;
+  align-items: start;
+}
+.order-h { max-width: 26ch; margin-bottom: 12px; }
+.order-copy > p:not(.eyebrow) { color: var(--ink-2); max-width: 62ch; }
+.order-steps { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; }
+.order-steps li { display: flex; gap: 12px; margin: 0; align-items: flex-start; }
+.order-step-n {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 13px;
+  display: grid;
+  place-items: center;
+}
+.order-steps strong { display: block; font-size: 14.5px; line-height: 1.4; }
+.order-steps p { margin: 3px 0 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+
+.order-card {
+  border: 1px solid #cfe7dd;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #f1faf5 0%, #ffffff 72%);
+  box-shadow: var(--shadow);
+  padding: 22px 22px 20px;
+}
+.order-tag {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.order-price { margin: 0; display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+.order-amount { font-size: 2.35rem; line-height: 1; font-weight: 760; letter-spacing: -0.03em; color: var(--ink); }
+.order-unit { font-size: 13.5px; color: var(--ink-3); }
+.order-list { list-style: none; margin: 14px 0 18px; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--ink-2); }
+.order-list li { position: relative; margin: 0; padding-left: 23px; line-height: 1.5; }
+.order-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 4px;
+  width: 11px;
+  height: 6px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+.btn-block { display: flex; width: 100%; justify-content: center; }
+.order-note { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-3); line-height: 1.5; }
 
 /* ---------------------------------------------------------------------- toc */
 
@@ -185,6 +248,9 @@ ol.toc li { counter-increment: toc; break-inside: avoid; margin: 0 0 9px; }
 ol.toc li a { color: var(--ink-2); text-decoration: none; }
 ol.toc li a:hover { color: var(--accent); text-decoration: underline; }
 ol.toc li a::before { content: counter(toc) ". "; color: var(--ink-3); font-weight: 660; }
+ol.toc li.toc-order { counter-increment: none; }
+ol.toc li.toc-order a { color: var(--accent); font-weight: 660; }
+ol.toc li.toc-order a::before { content: "→ "; color: var(--accent); font-weight: 700; }
 
 /* ------------------------------------------------------------------ sections */
 
@@ -481,9 +547,10 @@ details.faq[open] { border-color: #cfe7dd; }
 }
 
 @media (max-width: 860px) {
-  .card-grid, .two-col, .mini-figs, .contract-grid, .foot-grid { grid-template-columns: 1fr; }
+  .card-grid, .two-col, .mini-figs, .contract-grid, .foot-grid, .order-grid { grid-template-columns: 1fr; }
   .bar-row { grid-template-columns: 1fr; gap: 6px; }
-  .intro { padding: 40px 0 26px; }
+  .intro { padding: 40px 0 22px; }
+  .order-grid { gap: 24px; }
   .section { padding: 42px 0; }
 }
 

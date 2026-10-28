@@ -38,8 +38,8 @@ const SITE = {
   url: 'https://propfirmpassing.space',
   title: 'Prop Firm Passing Service: Flat $220, Any Firm, Any Size',
   description:
-    'A prop firm passing service that trades your evaluation to target for a flat $220 at any account size, with a free 7-day demo test first. What it costs, which firms allow it, and what voids a pass.',
-  lastReviewed: '2026-10-27',
+    'Prop firm passing service: your evaluation traded to target for a flat $220 at any account size. Free 7-day demo test, retries covered, firm rules checked first.',
+  lastReviewed: '2026-10-28',
   // Search Console ownership. Both methods are emitted so verification cannot fail
   // on a stale file: the HTML file must stay at the site root after verification,
   // and the build wipes docs/ on every run, so it is written here rather than by hand.
@@ -207,6 +207,7 @@ ${schemaData ? `<script type="application/ld+json">\n${JSON.stringify(schemaData
       )}</span></span>
     </a>
     <nav class="site-nav" aria-label="Sections">
+      <a class="nav-order" href="#order">Order — $220</a>
       <a href="#demo">Demo test</a>
       <a href="#cost">Prices</a>
       <a href="#firms">Firm terms</a>
@@ -214,7 +215,7 @@ ${schemaData ? `<script type="application/ld+json">\n${JSON.stringify(schemaData
       <a href="#verify">Checks</a>
       <a href="#proof">Evidence</a>
       <a href="#faq">FAQ</a>
-      ${tgBtn('Telegram', 'btn btn-tg btn-sm')}
+      ${tgBtn('Order', 'btn btn-tg btn-sm')}
     </nav>
   </div>
 </header>
