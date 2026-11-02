@@ -56,9 +56,9 @@ const SITE = {
 const VPS = {
   url: SITE.url + '/vps/',
   brand: 'Residential IP VPS',
-  title: 'Residential IP VPS — Static Residential IPv4 Hosting from $52/mo',
+  title: 'Residential IP VPS — Static Residential IPv4 Hosting from $52 for Two Months',
   description:
-    'Residential IP VPS with a dedicated static residential IPv4, NVMe storage and full administrative access. Four plans from $52 per month, provisioned in about fifteen minutes.',
+    'Residential IP VPS with a dedicated static residential IPv4, NVMe storage and full administrative access. Four plans from $52 for two months, provisioned in about fifteen minutes.',
   lastReviewed: '2026-11-02',
   plans: [
     { name: 'Starter', price: '52' },
@@ -300,7 +300,15 @@ function vpsPage() {
           price: plan.price,
           priceCurrency: 'USD',
           availability: 'https://schema.org/InStock',
-          url: VPS.url + '#plans'
+          url: VPS.url + '#plans',
+          // Every plan is sold in two-month terms, so the term is part of the offer
+          // rather than something only the visible copy states.
+          priceSpecification: {
+            '@type': 'UnitPriceSpecification',
+            price: plan.price,
+            priceCurrency: 'USD',
+            billingDuration: 'P2M'
+          }
         }))
       }
     ]
