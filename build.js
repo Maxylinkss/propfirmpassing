@@ -49,6 +49,25 @@ const SITE = {
     'This site is operated by the provider of the flat $220 service described here, so that provider\'s row in the price table is our own price rather than an independent figure. Prices for every other provider come from their own pricing pages, read on the dates shown.'
 };
 
+// /vps/ sells a different product (residential IP servers) under its own header and
+// its own stylesheet. It is built here rather than kept as a hand-written file so the
+// build, the sitemap and the Telegram CTA stay in one place. Declared after SITE,
+// because VPS.url is derived from SITE.url.
+const VPS = {
+  url: SITE.url + '/vps/',
+  brand: 'Residential IP VPS',
+  title: 'Residential IP VPS — Static Residential IPv4 Hosting from $52/mo',
+  description:
+    'Residential IP VPS with a dedicated static residential IPv4, NVMe storage and full administrative access. Four plans from $52 per month, provisioned in about fifteen minutes.',
+  lastReviewed: '2026-11-02',
+  plans: [
+    { name: 'Starter', price: '52' },
+    { name: 'Pro', price: '79' },
+    { name: 'Business', price: '129' },
+    { name: 'Enterprise', price: '199' }
+  ]
+};
+
 // Old addresses, all retired when the tracker collapsed into one page. The host is
 // Netlify, so these are real 301s from a _redirects file rather than the meta-refresh
 // stubs GitHub Pages forced. Anything not listed here falls through to 404.html.
@@ -249,6 +268,72 @@ ${body}
 `;
 }
 
+// The /vps/ document is assembled separately from layout(): that function emits the
+// passing-service header, nav and footer, none of which belong on a hosting sales page.
+// Everything shared with the rest of the site is the token set and the Telegram URL.
+function vpsPage() {
+  const body = fs
+    .readFileSync(path.join(ROOT, 'content', 'vps.html'), 'utf8')
+    .split('{{TELEGRAM_URL}}')
+    .join(TELEGRAM.url);
+
+  if (body.includes('{{')) throw new Error('Unreplaced token left in content/vps.html');
+
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': VPS.url + '#organization',
+        name: VPS.brand,
+        url: VPS.url,
+        sameAs: [TELEGRAM.url]
+      },
+      {
+        '@type': 'Product',
+        name: VPS.brand,
+        description: VPS.description,
+        brand: { '@type': 'Brand', name: VPS.brand },
+        offers: VPS.plans.map((plan) => ({
+          '@type': 'Offer',
+          name: plan.name,
+          price: plan.price,
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+          url: VPS.url + '#plans'
+        }))
+      }
+    ]
+  };
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(VPS.title)}</title>
+<meta name="description" content="${esc(VPS.description)}">
+<link rel="canonical" href="${esc(VPS.url)}">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${esc(VPS.title)}">
+<meta property="og:description" content="${esc(VPS.description)}">
+<meta property="og:url" content="${esc(VPS.url)}">
+<meta property="og:site_name" content="${esc(VPS.brand)}">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#07231b">
+<link rel="stylesheet" href="/assets/vps.css">
+<script type="application/ld+json">
+${JSON.stringify(schemaData, null, 2)}
+</script>
+</head>
+<body>
+${body}
+</body>
+</html>
+`;
+}
+
 function page404() {
   return layout({
     title: 'Page not found | ' + SITE.name,
@@ -342,6 +427,10 @@ function build() {
   fs.copyFileSync(path.join(ROOT, 'assets', 'style.css'), path.join(OUT, 'assets', 'style.css'));
   written.push('assets/style.css');
 
+  written.push(write('vps/index.html', vpsPage()));
+  fs.copyFileSync(path.join(ROOT, 'assets', 'vps.css'), path.join(OUT, 'assets', 'vps.css'));
+  written.push('assets/vps.css');
+
   written.push(
     write(
       SITE.googleSiteVerification + '.html',
@@ -357,6 +446,7 @@ function build() {
     `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE.url}/</loc><lastmod>${SITE.lastReviewed}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>${VPS.url}</loc><lastmod>${VPS.lastReviewed}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
 `
   );
@@ -368,6 +458,10 @@ function build() {
   console.log(`Source snapshot: ${file} (prices read ${snapshot.passingServices.checked}, rules read ${snapshot.firms.forex.checked})`);
   console.log(`Page: ${countWords(html)} words, ${kb} KB html, ${cssKb} KB css, 0 image requests, 0 JS`);
   console.log(`FAQ entries: ${faq.items.length}`);
+  console.log(
+    `VPS page: /vps/ — ${(fs.statSync(path.join(OUT, 'vps', 'index.html')).size / 1024).toFixed(1)} KB html, ` +
+      `${VPS.plans.length} plans from $${VPS.plans[0].price}`
+  );
   return { written, html };
 }
 

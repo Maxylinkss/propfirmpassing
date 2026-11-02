@@ -22,10 +22,12 @@ the same provider stands behind both.
 ```
 tracker/
   content/index.html            the page body, with {{TOKENS}} for generated blocks
+  content/vps.html              the /vps/ page body — own header, no site nav
   data/
     snapshot-2026-10-26.json    dated price and rule figures used in the tables
     faq.json                    questions and answers (rendered visibly AND as FAQPage schema)
   assets/style.css              stylesheet, copied into the build
+  assets/vps.css                stylesheet for /vps/ only
   build.js                      renders docs/ — nothing in docs/ is hand-written
   serve.js                      local preview on http://localhost:8099
   docs/                         GENERATED — do not edit by hand
@@ -50,6 +52,19 @@ node serve.js        # http://localhost:8099
 
 The build prints the visible word count every time. It should stay north of 5,000;
 the page is competing with a 5,758-word page that ranks first.
+
+## The /vps/ page
+
+`/vps/` sells residential IP VPS hosting: four plans, $52 at the entry tier. It is a
+different product, so it carries its own header, its own stylesheet and no link to
+or from the passing-service page. The two share the domain and the Telegram contact
+and nothing else.
+
+Its body is `content/vps.html` with the same `{{TELEGRAM_URL}}` token, so the CTA is
+still defined once in `build.js`. The build wraps it in a document with its own head,
+canonical and `Product` schema and writes `docs/vps/index.html`; `/vps/` is also the
+second entry in `sitemap.xml`. It does not use `layout()`, because that function emits
+the passing-service header, nav and footer.
 
 ## Design rules this site follows
 
