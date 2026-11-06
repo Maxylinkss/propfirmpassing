@@ -56,15 +56,18 @@ const SITE = {
 const VPS = {
   url: SITE.url + '/vps/',
   brand: 'Residential IP VPS',
-  title: 'Residential IP VPS — Static Residential IPv4 Hosting from $52 for Two Months',
+  title: 'Residential IP VPS — Static Residential IPv4 Hosting from $52 for Six Months',
   description:
-    'Residential IP VPS with a dedicated static residential IPv4, NVMe storage and full administrative access. Four plans from $52 for two months, provisioned in about fifteen minutes.',
+    'Residential IP VPS with a dedicated static residential IPv4, NVMe storage and full administrative access. Four plans from $52 for six months, provisioned in about fifteen minutes.',
   lastReviewed: '2026-11-02',
+  // Starter is billed for a six-month term; the three plans above it keep the
+  // two-month term. The term travels with the plan so the offer schema cannot
+  // disagree with the card.
   plans: [
-    { name: 'Starter', price: '52' },
-    { name: 'Pro', price: '79' },
-    { name: 'Business', price: '129' },
-    { name: 'Enterprise', price: '199' }
+    { name: 'Starter', price: '52', term: 'P6M' },
+    { name: 'Pro', price: '79', term: 'P2M' },
+    { name: 'Business', price: '129', term: 'P2M' },
+    { name: 'Enterprise', price: '199', term: 'P2M' }
   ]
 };
 
@@ -301,13 +304,13 @@ function vpsPage() {
           priceCurrency: 'USD',
           availability: 'https://schema.org/InStock',
           url: VPS.url + '#plans',
-          // Every plan is sold in two-month terms, so the term is part of the offer
-          // rather than something only the visible copy states.
+          // The term is part of the offer rather than something only the visible
+          // copy states, and it differs by plan, so it comes from plan.term.
           priceSpecification: {
             '@type': 'UnitPriceSpecification',
             price: plan.price,
             priceCurrency: 'USD',
-            billingDuration: 'P2M'
+            billingDuration: plan.term
           }
         }))
       }
