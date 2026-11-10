@@ -72,16 +72,19 @@ the passing-service header, nav and footer.
   `https://t.me/voraspas`, and that URL is defined once in `build.js` as
   `TELEGRAM.url`. There is no other contact channel: no email address, form or
   phone number is published here.
-- **This domain and `elitepropx.com` are kept separate.** Nothing here links to
-  that domain and nothing on it links here — not in the footer, not in body copy,
-  not in the `Organization` schema, which names `Prop Firm Passing` and
-  `propfirmpassing.space` rather than the other site. The disclosure in the footer
-  says the site is operated by the provider of the $220 service without naming the
-  other brand, which states the conflict without merging the two properties. The
-  price-table row for that service is therefore labelled "Prop Firm Passing (this
-  site)" and carries no source link. Don't reintroduce a cross-link as a
-  convenience; if the two ever need to be joined, that is a decision, not a
-  formatting change.
+- **This domain links to `elitepropx.com` from the footer, and only from the
+  footer.** The two sites were built to stand apart, and they still do everywhere
+  else: the `Organization` schema names `Prop Firm Passing` and
+  `propfirmpassing.space`, the disclosure names no other brand, and the price-table
+  row for this service stays labelled "Prop Firm Passing (this site)" with no
+  source link. `SITE.related` in `build.js` is the single exception, added on
+  10 November 2026, so the two properties are connected by one crawlable link
+  instead of being isolated islands that Google has to guess about. It is one-way:
+  nothing on `elitepropx.com` links back here, which is what keeps this page from
+  reading as a doorway for the other site. The link text names the operator rather
+  than pretending to be an independent recommendation — say "also from the same
+  operator" or say nothing. Widening it to body copy or adding the reverse link is
+  a decision, not a formatting change.
 - **Retired URLs redirect with a real 301, they don't 404.** `build.js` writes
   `docs/_redirects` from the `REDIRECTS` array, covering the addresses the
   four-page tracker used (`prices.html`, `rules.html`, `methodology.html`) plus
@@ -136,12 +139,17 @@ keeps working. Apex `TTL` is Namecheap's automatic 30 minutes, which is how long
 resolvers that had cached the GitHub addresses keep reaching a host that no longer
 answers for the domain.
 
-`docs/CNAME` is no longer emitted: it was only ever a GitHub Pages custom-domain
-marker, and the file is gone from the build once the cutover was confirmed.
+`docs/CNAME` is emitted again, and that is not a rollback. GitHub Pages still
+answers `maxylinkss.github.io/propfirmpassing/` with a 200 copy of every page
+rather than sending that host to the apex, and that copy is a duplicate of the
+canonical homepage. With the marker present Pages 301s it to
+`propfirmpassing.space`. Netlify ignores the file and DNS still points at Netlify,
+so the site is served from Netlify and nowhere else; delete the marker only if
+GitHub Pages is turned off for the repository.
 
 **Rolling back** means restoring the four GitHub `A` records, pointing `www` back
 at `maxylinkss.github.io`, and re-adding the custom domain in the repository's
-Pages settings — the `CNAME` file is no longer in `docs/` to do that automatically.
+Pages settings; the build already emits the `CNAME` file, so the marker is there.
 
 ### The old GitHub Pages setup, for reference
 

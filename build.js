@@ -40,6 +40,18 @@ const SITE = {
   description:
     'Prop firm passing service: your evaluation traded to target for a flat $220 at any account size. Free 7-day demo test, retries covered, firm rules checked first.',
   lastReviewed: '2026-10-28',
+  // Date the document itself last changed, which is not the date the figures were
+  // read: a structural edit should refresh the sitemap entry without claiming the
+  // prices were re-checked. Used only for sitemap lastmod.
+  updated: '2026-11-10',
+  // The one outbound link to the sibling site. It lives here rather than in
+  // content/index.html because every layout() page carries the same footer, so the
+  // homepage and 404.html cannot drift apart.
+  related: {
+    url: 'https://elitepropx.com/',
+    name: 'Elite Prop X',
+    desc: 'prop firm reviews, challenge guides and payout timelines'
+  },
   // Search Console ownership. Both methods are emitted so verification cannot fail
   // on a stale file: the HTML file must stay at the site root after verification,
   // and the build wipes docs/ on every run, so it is written here rather than by hand.
@@ -254,6 +266,9 @@ ${body}
       <p class="foot-h">Start</p>
       ${tgBtn('Message ' + TELEGRAM.handle)}
       <p class="foot-alt">Telegram is the only contact channel for this site. There is no email address, form or phone number here.</p>
+      <p class="foot-alt"><strong>Also from the same operator:</strong> <a href="${esc(
+        SITE.related.url
+      )}">${esc(SITE.related.name)}</a> — ${esc(SITE.related.desc)}.</p>
     </div>
   </div>
   <div class="wrap">
@@ -450,13 +465,19 @@ function build() {
   );
 
   fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
+  // GitHub Pages still answers maxylinkss.github.io/propfirmpassing/ with a 200 copy
+  // of every page on this site. That copy is a duplicate of the canonical homepage,
+  // so the CNAME marker is emitted to make Pages 301 that host here instead. Netlify
+  // ignores this file and DNS points at Netlify, so nothing is served from GitHub
+  // either way; delete the marker only if Pages is turned off for the repo.
+  written.push(write('CNAME', SITE.domain + '\n'));
   written.push('robots.txt');
 
   fs.writeFileSync(
     path.join(OUT, 'sitemap.xml'),
     `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${SITE.url}/</loc><lastmod>${SITE.lastReviewed}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>${SITE.url}/</loc><lastmod>${SITE.updated}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>${VPS.url}</loc><lastmod>${VPS.lastReviewed}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
 `
