@@ -340,7 +340,7 @@ function vpsPage() {
 <title>${esc(VPS.title)}</title>
 <meta name="description" content="${esc(VPS.description)}">
 <link rel="canonical" href="${esc(VPS.url)}">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(VPS.title)}">
 <meta property="og:description" content="${esc(VPS.description)}">
@@ -478,7 +478,6 @@ function build() {
     `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE.url}/</loc><lastmod>${SITE.updated}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>${VPS.url}</loc><lastmod>${VPS.lastReviewed}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
 `
   );

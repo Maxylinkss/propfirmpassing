@@ -62,8 +62,9 @@ and nothing else.
 
 Its body is `content/vps.html` with the same `{{TELEGRAM_URL}}` token, so the CTA is
 still defined once in `build.js`. The build wraps it in a document with its own head,
-canonical and `Product` schema and writes `docs/vps/index.html`; `/vps/` is also the
-second entry in `sitemap.xml`. It does not use `layout()`, because that function emits
+canonical and `Product` schema and writes `docs/vps/index.html`; `/vps/` is deliberately kept out of
+`sitemap.xml` and carries `noindex, follow`, because it sells a different product and
+should not compete with the passing-service page in search. It does not use `layout()`, because that function emits
 the passing-service header, nav and footer.
 
 ## Design rules this site follows
